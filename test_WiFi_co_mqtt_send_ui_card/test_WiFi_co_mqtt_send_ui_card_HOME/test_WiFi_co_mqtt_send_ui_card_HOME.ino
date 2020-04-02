@@ -2,6 +2,8 @@
 #include <PubSubClient.h>
 #include <SPI.h>
 #include <MFRC522.h>
+#include <ArduinoJson.h>
+#include <ESP8266HTTPClient.h>
 
 #define RST_PIN         0
 #define SS_PIN          2
@@ -76,11 +78,44 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void loop() {
 
   //Instance du client Http
-  HttpClient client;
+  HTTPClient http;
 
-  //Requete GET pour récupérer la date
-  client.get("http://worldtimeapi.org/api/timezone/Europe/Paris");
-  
+  //Outils ArduinoJson
+  const size_t capacity = JSON_OBJECT_SIZE(15) + 350;
+  DynamicJsonDocument doc(capacity);
+
+  //Envoi de la requete GET pour récupérer la date
+    if (http.begin(espClient, "http://worldtimeapi.org/api/timezone/Europe/Paris")) {  // HTTP
+
+
+      Serial.print("[HTTP] GET...\n");
+      int httpCode = http.GET();
+
+      // httpCode négatif si erreur
+      if (httpCode > 0) {
+        Serial.printf("[HTTP] GET... code: %d\n", httpCode);
+
+        // fichier trouvé
+        if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
+          String payload = http.getString();
+          // On affiche le payload
+          Serial.println(payload);
+
+          //Parsing en JSON
+          deserializeJson(doc, http.getStream());
+          const char* datetime = doc["datetime"]; // Récupération de la dateTime
+          Serial.println(datetime);
+
+        }
+      } else {
+        Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+      }
+
+      http.end();
+    } else {
+      Serial.printf("[HTTP} Unable to connect\n");
+    }
+    
   // On relance le loop si aucune nouvelle carte n'est présentée
   if ( ! lecteur.PICC_IsNewCardPresent())
     return;
@@ -116,15 +151,18 @@ void loop() {
       printDec(lecteur.uid.uidByte, lecteur.uid.size);
       Serial.println();
 
-      if (client.available()) {
-        char c = cleint.read();
-        Serial.println(c);
-      }
-
       char str[32] = "";
       array_to_string(lecteur.uid.uidByte, 4, str); //Insert (byte array, length, char array for output)
       Serial.println(str); //Print the output uid string
 
+   /*   
+      if (http.available()) {
+        deserializeJson(doc, http.getStream());
+        const char* datetime = doc["datetime"]; // Récupération de la dateTime
+        Serial.println(json);
+        Serial.println(datetime);
+      }
+*/
       client.publish("guizard/hodor/uid", str);
       client.publish("guizard/hodor/uid", "Ma carte");
       client.subscribe("guizard/hodor/uid");
@@ -143,6 +181,7 @@ void loop() {
       lecteur.PCD_StopCrypto1();
   
   client.loop();
+  http.end();
 }
 
 /**
