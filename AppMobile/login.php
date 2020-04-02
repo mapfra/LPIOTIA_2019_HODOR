@@ -14,82 +14,46 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <?php $base_url = "localhost/"?>
+    
     <link href="/AppMobile/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/AppMobile/css/style_hodor.css" rel="stylesheet" type="text/css" media="screen"/>
 
 </head>
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
 <body class="login_page">
-    <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
-    <img src="/AppMobile/img/logo_hodor.JPG">
-        <h1>Projet IoTiA 2020 </h1>
-        <h3>Wilfried Mezard / Raphaël GUIOT</h3>
-
-
-
-
-
-
-
-
-</body>
-
-
-
-
-
-
-
-
-<!-- <body class="login_page">
-
-    <?php //if ($this->session->flashdata('success')) : ?>
-        <div class="alert alert-success" role="alert">
-            <?php //$this->session->flashdata('success') ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-    <?php //endif; ?>
-    <?php //if ($this->session->flashdata('error')) : ?>
-        <div class="alert alert-danger" role="alert">
-            <?php //$this->session->flashdata('error') ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-    <?php //endif; ?>
-
     <div class="login-wrapper">
         <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
-            <h1><a href="#" title="Login Page" tabindex="-1">Projet IoT pour l'année 2020</a></h1>
+            <img class="rounded mx-auto d-block" src="/AppMobile/img/logo_hodor.JPG">
+            <img class="rounded mx-auto d-block img-fluid" alt="Responsive image" src="/AppMobile/img/hodor_happy2.jpeg">
 
-            <form name="loginform" id="loginform" action="" method="post">
+                <h1 class="text-center text-bleu-enedis">Projet IoTiA 2020 </h1>
+                <h3 class="text-center">Wilfrid Mezard / Raphaël GUIOT</h3>
+
+                <form name="loginform" id="loginform" action="" method="post">
                 <p>
                     <h1 class="text-center text-bleu-enedis">H.O.D.O.R.</h1>
-                    <br>
-                    <h4 class="text-center"><span class="text-bleu-enedis">Project : HOld the DoOR /P</span>ilotage <span class="text-bleu-enedis">A</span class="text-bleu-enedis">ctivité <span class="text-bleu-enedis">R</span>accordement <span class="text-bleu-enedis">I</span>ngénierie <span class="text-bleu-enedis">S</span>tructure</h4>
+                <!-- <br> -->
+                    <h3 class="text-center"><span class="text-bleu-enedis">H</span><span class="text-bleu-enedis">O</span class="text-bleu-enedis">ld The <span class="text-bleu-enedis">D</span><span class="text-bleu-enedis">O</span>o<span class="text-bleu-enedis">R</span></h3>
                 </p>
                 <p>
                 </p>
 
                 <p class="submit text-center mt-5">
+                    <input type="hidden" name="login_id" id="wp-submit" class="btn btn-block" placeholder="Votre identifiant" />
+                    <input type="hidden" name="login_pwd" id="wp-submit" class="btn btn-block" placeholder="Votre mot de passe" />
+                    <br>
                     <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-block" value="Se connecter" />
-                    <br />
+                     <br />
                     <br />
                     <small>
                         <a href="#request_authorization" data-toggle="modal" class="text-success">Vous n'avez pas encore d'habilitation ? Demander une habilitation</a>
                     </small>
-
                 </p>
             </form>
 
-        </div>
-    </div>
-    <?php //$this->load->view('layouts/request_authorization'); ?>
- -->
-
+</body>
 
     <!-- END CONTAINER -->
 
