@@ -74,6 +74,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
  
 void loop() {
+
+  //Instance du client Http
+  HttpClient client;
+
+  //Requete GET pour récupérer la date
+  client.get("http://worldtimeapi.org/api/timezone/Europe/Paris");
   
   // On relance le loop si aucune nouvelle carte n'est présentée
   if ( ! lecteur.PICC_IsNewCardPresent())
@@ -110,7 +116,10 @@ void loop() {
       printDec(lecteur.uid.uidByte, lecteur.uid.size);
       Serial.println();
 
-
+      if (client.available()) {
+        char c = cleint.read();
+        Serial.println(c);
+      }
 
       char str[32] = "";
       array_to_string(lecteur.uid.uidByte, 4, str); //Insert (byte array, length, char array for output)
