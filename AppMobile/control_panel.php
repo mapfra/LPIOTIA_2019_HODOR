@@ -35,7 +35,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Réinitialiser votre mot de passe</a>
-        <a href="logout.php" class="btn btn-danger">Déconnection</a>
+        <a href="logout.php" class="btn btn-danger">Déconnexion</a>
     </p>
 </body>
 </html>

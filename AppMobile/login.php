@@ -35,24 +35,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM users WHERE username = :username";
-        
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+
         if($stmt = $pdo->prepare($sql)){
+
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-            
+            $stmt->bindParam(':username', $param_username, PDO::PARAM_STR);
+
             // Set parameters
             $param_username = trim($_POST["username"]);
             
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
+            if($stmt->execute(array($param_username))){
+
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $id = $row["id"];
                         $username = $row["username"];
                         $hashed_password = $row["password"];
+
                         if(password_verify($password, $hashed_password)){
+                        //if($hashed_password == $password){
                             // Password is correct, so start a new session
                             session_start();
                             
@@ -60,12 +64,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
-                            
+                            var_dump($_SESSION["username"]);
                             // Redirect user to welcome page
                             header("location: control_panel.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "Le mot de passe entré n'est pas bon.";
                         }
                     }
                 } else{
@@ -130,13 +134,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">ID :</span>
                         </div>
-                        <input type="text" name="username" class="form-control" placeholder="Identifiant" aria-label="Username" aria-describedby="basic-addon1" value="<?php echo $username; ?>">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Identifiant" aria-label="Username" aria-describedby="basic-addon1" value="<?php echo $username; ?>">
                         <span class="help-block"><?php echo $username_err; ?></span>
                         </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                         </div>
-                        <input type="password" name="password" class="form-control" placeholder="Mot de passe" aria-label="password" aria-describedby="basic-addon1">
+                        <input type="password" id="username" name="password" class="form-control" placeholder="Mot de passe" aria-label="password" aria-describedby="basic-addon1">
                         <span class="help-block"><?php echo $password_err; ?></span>
                     </div>
             </p>
