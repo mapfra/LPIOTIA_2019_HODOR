@@ -1,5 +1,93 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: control_panel.php");
+    exit;
+}
+ 
+// Include config file
+require_once "config_db.php";
+ 
+// Define variables and initialize with empty values
+$username = $password = "";
+$username_err = $password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Check if username is empty
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Entrer votre identifiant.";
+    } else{
+        $username = trim($_POST["username"]);
+    }
+    
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Entrer votre mot de passe.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+        // Prepare a select statement
+        $sql = "SELECT id, username, password FROM users WHERE username = :username";
+        
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+            
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                // Check if username exists, if yes then verify password
+                if($stmt->rowCount() == 1){
+                    if($row = $stmt->fetch()){
+                        $id = $row["id"];
+                        $username = $row["username"];
+                        $hashed_password = $row["password"];
+                        if(password_verify($password, $hashed_password)){
+                            // Password is correct, so start a new session
+                            session_start();
+                            
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;                            
+                            
+                            // Redirect user to welcome page
+                            header("location: control_panel.php");
+                        } else{
+                            // Display an error message if password is not valid
+                            $password_err = "The password you entered was not valid.";
+                        }
+                    }
+                } else{
+                    // Display an error message if username doesn't exist
+                    $username_err = "No account found with that username.";
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+    
+    // Close connection
+    unset($pdo);
+}
+?>
+
 <!DOCTYPE html>
-<html class=" ">
+<html lang="fr">
 <head>
     <!--
      * @Package: Ultra Admin - Responsive Theme
@@ -31,35 +119,40 @@
                 <h1 class="text-center text-bleu-enedis">Projet IoTiA 2020 </h1>
                 <h3 class="text-center">Wilfrid Mezard / Raphaël GUIOT</h3>
 
-                <form name="loginform" id="loginform" action="" method="post">
                 <p>
                     <h1 class="text-center text-bleu-enedis">H.O.D.O.R.</h1>
-                <!-- <br> -->
                     <h3 class="text-center"><span class="text-bleu-enedis">H</span><span class="text-bleu-enedis">O</span class="text-bleu-enedis">ld The <span class="text-bleu-enedis">D</span><span class="text-bleu-enedis">O</span>o<span class="text-bleu-enedis">R</span></h3>
                 </p>
-                <p>
-                </p>
 
-                <p class="submit text-center mt-5">
-                    <input type="hidden" name="login_id" id="wp-submit" class="btn btn-block" placeholder="Votre identifiant" />
-                    <input type="hidden" name="login_pwd" id="wp-submit" class="btn btn-block" placeholder="Votre mot de passe" />
-                    <br>
-                    <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-block" value="Se connecter" />
-                     <br />
-                    <br />
-                    <small>
-                        <a href="#request_authorization" data-toggle="modal" class="text-success">Vous n'avez pas encore d'habilitation ? Demander une habilitation</a>
-                    </small>
-                </p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="loginform" id="loginform" class="visible" action="" method="post">
+            <p class="submit text-center mt-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">ID :</span>
+                        </div>
+                        <input type="text" name="username" class="form-control" placeholder="Identifiant" aria-label="Username" aria-describedby="basic-addon1" value="<?php echo $username; ?>">
+                        <span class="help-block"><?php echo $username_err; ?></span>
+                        </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                        </div>
+                        <input type="password" name="password" class="form-control" placeholder="Mot de passe" aria-label="password" aria-describedby="basic-addon1">
+                        <span class="help-block"><?php echo $password_err; ?></span>
+                    </div>
+            </p>
+            <p class="submit text-center mt-5"> 
+            <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-block" value="Se connecter" />
+                <small>
+                    <a href="register.php" data-toggle="modal" class="text-success">Vous n'avez pas encore d'autorisation ? Demander une autorisation</a>
+                </small>
+            </p>
             </form>
-
 </body>
 
     <!-- END CONTAINER -->
 
 </body>
 <footer>
-    <script type="text/javacript" src="/AppMobile/node_modules/bootstrap/dist/bootstrap.min.js">
-    </script>
+    <script type="text/javacript" src="/AppMobile/node_modules/bootstrap/dist/bootstrap.min.js"></script>
 </footer>
 </html>
