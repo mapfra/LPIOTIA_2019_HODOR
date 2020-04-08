@@ -11,6 +11,8 @@
 const char* ssid = "Xperia 10_a7a6"; // Enter your WiFi name
 const char* password =  "12345678"; // Enter WiFi password
 
+const char* datetime = ""; // Variable contenant la date à insérer
+
 // const char* mqttServer = "10.0.4.116";
 const char* mqttServer = "192.168.43.240";
 const int mqttPort = 1883;
@@ -80,7 +82,7 @@ void loop() {
   //Instance du client Http
   HTTPClient http;
 
-  //Outils ArduinoJson
+  //Outils ArduinoJson - capacité du JSON parsé
   const size_t capacity = JSON_OBJECT_SIZE(15) + 350;
   DynamicJsonDocument doc(capacity);
 
@@ -98,16 +100,17 @@ void loop() {
         // fichier trouvé
         if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
           String payload = http.getString();
-          // On affiche le payload
+          // On affiche le payload ie le JSON reçu via l'API
           Serial.println(payload);
 
           //Parsing en JSON
           deserializeJson(doc, http.getStream());
-          const char* datetime = doc["datetime"]; // Récupération de la dateTime
+          datetime = doc["datetime"]; // Récupération de la dateTime
           Serial.println(datetime);
 
         }
       } else {
+        // En cas d'erreur lors de la requête HTTP
         Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
       }
 
@@ -152,18 +155,17 @@ void loop() {
       Serial.println();
 
       char str[32] = "";
+      char output[80];
       array_to_string(lecteur.uid.uidByte, 4, str); //Insert (byte array, length, char array for output)
       Serial.println(str); //Print the output uid string
+      Serial.println(datetime);
+      Serial.println(strcpy(output,str));
+      Serial.println(strcat(output, " "));
+      Serial.println(strcat(output, datetime));
+      Serial.println(output);
 
-   /*   
-      if (http.available()) {
-        deserializeJson(doc, http.getStream());
-        const char* datetime = doc["datetime"]; // Récupération de la dateTime
-        Serial.println(json);
-        Serial.println(datetime);
-      }
-*/
-      client.publish("guizard/hodor/uid", str);
+      // Publication via le broker des chaînes concaténées
+      client.publish("guizard/hodor/uid", output);
       client.publish("guizard/hodor/uid", "Ma carte");
       client.subscribe("guizard/hodor/uid");
 
