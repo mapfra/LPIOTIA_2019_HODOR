@@ -10,6 +10,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
  
 // Include config file
 require_once "config_db.php";
+//require_once "my_log.php";
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -63,8 +64,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
-                            var_dump($_SESSION["username"]);
+                            $_SESSION["username"] = $username;
+
+                            //m_log("$username vient de s'authentifier dans l'application");
                             // Redirect user to welcome page
                             header("location: control_panel.php");
                         } else{
@@ -78,6 +80,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
+                error_log("$username a tenté de s'authentifier dans l'application",3,"/logs/log.txt");
+
             }
 
             // Close statement
@@ -118,16 +122,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="login-wrapper">
         <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
             <img class="rounded mx-auto d-block" src="/AppMobile/img/logo_hodor.JPG">
-            <img class="rounded mx-auto d-block img-fluid" alt="Responsive image" src="/AppMobile/img/hodor_happy2.jpeg">
-
+            <img class="rounded mx-auto d-block" id="logo1" alt="Responsive image" src="/AppMobile/img/door_fanart.jpg">
                 <h1 class="text-center text-bleu-enedis">Projet IoTiA 2020 </h1>
                 <h3 class="text-center">Wilfrid Mezard / Raphaël GUIOT</h3>
-
                 <p>
                     <h1 class="text-center text-bleu-enedis">H.O.D.O.R.</h1>
-                    <h3 class="text-center"><span class="text-bleu-enedis">H</span><span class="text-bleu-enedis">O</span class="text-bleu-enedis">ld The <span class="text-bleu-enedis">D</span><span class="text-bleu-enedis">O</span>o<span class="text-bleu-enedis">R</span></h3>
-                </p>
-
+<!--                     <h3 class="text-center"><span class="text-bleu-enedis">H</span><span class="text-bleu-enedis">O</span class="text-bleu-enedis">ld The <span class="text-bleu-enedis">D</span><span class="text-bleu-enedis">O</span>o<span class="text-bleu-enedis">R</span></h3>
+ -->                </p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="loginform" id="loginform" class="visible" action="" method="post">
             <p class="submit text-center mt-5">
                     <div class="input-group mb-3">
@@ -136,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <input type="text" id="username" name="username" class="form-control" placeholder="Identifiant" aria-label="Username" aria-describedby="basic-addon1" value="<?php echo $username; ?>">
                         <span class="help-block"><?php echo $username_err; ?></span>
-                        </div>
+                    </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                         </div>

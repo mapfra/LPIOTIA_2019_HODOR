@@ -112,32 +112,52 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="/AppMobile/css/style_hodor.css" rel="stylesheet" type="text/css" media="screen"/>
 
 </head>
-<body>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-            </div>
+<!-- BEGIN BODY -->
+<body class="login_page">
+    <div class="login-wrapper">
+        <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
+            <img class="rounded mx-auto d-block" src="/AppMobile/img/logo_hodor.JPG">
+            <img class="rounded mx-auto d-block" id="logo1" alt="" src="/AppMobile/img/door_fanart.jpg">
+            <h2>Sign Up</h2>
+            <p>Please fill this form to create an account.</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="loginform" id="loginform" class="visible" action="" method="post">
+            <p class="submit text-center mt-5">
+                        <div class="input-group-prepend form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                        <span class="input-group-text" id="basic-addon1">Username:</span>
+                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                            <span class="help-block"><?php echo $username_err; ?></span>
+                        </div>
+                        <div class="input-group-prepend form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                        <span class="input-group-text" id="basic-addon1">Password:</span>
+                            <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                            <span class="help-block"><?php echo $password_err; ?></span>
+                        </div>
+                        <div class="input-group-prepend form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                        <span class="input-group-text" id="basic-addon1">Confirm Password:</span>
+                            <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                            <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                        </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend form-group">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                            <input type="reset" class="btn btn-default" value="Reset">
+                        </div>
+                    </div>
+            </p>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
-        </form>
-    </div>    
+            <p class="submit text-center mt-5"> 
+            <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-block" value="Se connecter" />
+                <small>
+                    <a href="register.php" data-toggle="modal" class="text-success">Vous n'avez pas encore d'autorisation ? Demander une autorisation</a>
+                </small>
+            </p>
+            </form>
 </body>
+<footer>
+    <script type="text/javacript" src="/AppMobile/node_modules/bootstrap/dist/bootstrap.min.js"></script>
+</footer>
 </html>

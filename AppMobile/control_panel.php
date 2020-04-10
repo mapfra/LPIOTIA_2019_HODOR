@@ -25,17 +25,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta content="" name="description" />
     <meta content="" name="author" />
     <?php $base_url = "localhost/"?>
-    
     <link href="/AppMobile/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="/AppMobile/css/style_hodor.css" rel="stylesheet" type="text/css" media="screen"/>
 </head>
-<body>
-    <div class="page-header">
-        <h1>Bonjour, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenue sur notre application.</h1>
-    </div>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Réinitialiser votre mot de passe</a>
-        <a href="logout.php" class="btn btn-danger">Déconnexion</a>
-    </p>
+<!-- BEGIN BODY -->
+<body class="login_page">
+    <div class="login-wrapper">
+        <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
+            <img class="rounded mx-auto d-block" src="/AppMobile/img/logo_hodor.JPG">
+            <img class="rounded mx-auto d-block img-fluid" alt="Responsive image" src="/AppMobile/img/hodor_happy2.jpeg">
+            <p>     
+                <h1>Bonjour, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenue sur notre application.</h1>
+            </p>
+            <p>
+            <h3 class="text-bleu-enedis">Ouverture de la porte <label class="switch"><input type="checkbox"><span class="slider round"></span></label></h3>
+            </p>
+            <p class="submit text-center mt-5"> 
+                <a href="reset-password.php" class="btn btn-warning">Réinitialiser votre mot de passe</a>
+                <a href="logout.php" class="btn btn-warning">Déconnexion</a>
+            </p>
 </body>
 </html>
+<footer>
+    <script type="text/javacript" src="/AppMobile/node_modules/bootstrap/dist/bootstrap.min.js"></script>
+</footer>
