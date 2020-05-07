@@ -1,84 +1,97 @@
 <?php
 // Include config file
 require_once "config_db.php";
+include "my_log.php";
  
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $confirm_password = $mobile = $mail = "";
+$username_err = $password_err = $confirm_password_err = $mobile_err = $mail_err =  "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
+    if(empty($_POST["username"]) === true || strlen($_POST["username"]) > 50){
+        $username_err = "Entrer un identifiant valide";
     } else{
+        // Set parameters
+        $param_username = htmlspecialchars(trim($_POST["username"]));
+
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = :username";
-        
+
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             
-            // Set parameters
-            $param_username = trim($_POST["username"]);
-            
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
-                    $username_err = "This username is already taken.";
-                } else{
+                    $username_err = "Cet identifiant est déjà pris";
+                } else {
                     $username = trim($_POST["username"]);
                 }
-            } else{
+            } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
-
             // Close statement
             unset($stmt);
         }
     }
     
-    // Validate password
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have atleast 6 characters.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
-    } else{
-        $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+    // Validate inputs
+    if(empty($_POST["password"]) === true || strlen(trim($_POST["password"])) < 6){
+        $password_err = "Entrer un mot de passe valide, au moins 6 caractères";
+    } else {
+        $password = htmlspecialchars(trim($_POST["password"]));
+        // Validate confirm password
+        if(empty($_POST["confirm_password"]) === true){
+            $confirm_password_err = "Confirmer votre mot de passe";     
+        } else{
+            $confirm_password = htmlspecialchars(trim($_POST["confirm_password"]));
+            if($password != $confirm_password) {
+                $confirm_password_err = "Vos mots de passes ne correspondent pas";
+            }
+        } 
+        if(preg_match("^((\+|00)33\s?|0)[67](\s?\d{2}){4}$^", $_POST["num_mobile"]) == 1) {
+            $param_mobile = htmlspecialchars(trim($_POST["num_mobile"]));
+        } else {
+            $mobile_err = "Entrer un numéro de mobile valide";
+        } 
+        if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) !== false) {
+            $param_mail = htmlspecialchars(trim($_POST["email"]));
+        } else{
+            $mail_err = 'Entrer un email valide';
         }
     }
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-        
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($mobile_err)){
+
+        // Set parameters
+        $param_username = $username;
+        $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+        $sql = "INSERT INTO users (username, password, num_mobile, email) VALUES (:username, :password, :num_mobile, :email)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
-            
-            // Set parameters
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $stmt->bindParam(":num_mobile", $param_mobile, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $param_mail, PDO::PARAM_STR);
             
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
+            try { 
+                $id = $stmt->execute();
                 // Redirect to login page
+                m_log("$username vient de créer un compte sur l'application, STATUS OK");
                 header("location: login.php");
-            } else{
-                echo "Something went wrong. Please try again later.";
+            } catch (PDOException $e) {
+                echo 'Erreur : [', $e->getCode(), '] ', $e->getMessage();
+            } catch (Exception $e) {
+                die('Erreur SQL : '.$e->getMessage());
             }
 
             // Close statement
@@ -92,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
  
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <!--
      * @Package: Ultra Admin - Responsive Theme
@@ -116,45 +129,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body class="login_page">
     <div class="login-wrapper">
         <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
-            <img class="rounded mx-auto d-block" src="/AppMobile/img/logo_hodor.JPG">
-            <img class="rounded mx-auto d-block" id="logo1" alt="" src="/AppMobile/img/door_fanart.jpg">
-            <h2>Sign Up</h2>
-            <p>Please fill this form to create an account.</p>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="loginform" id="loginform" class="visible" action="" method="post">
-            <p class="submit text-center mt-5">
+        <a href="/AppMobile/login.php"><img class="rounded mx-auto d-block" id="logo2" src="/AppMobile/img/logo_hodor.JPG"></a>
+            <img class="rounded mx-auto d-block" id="logo2" alt="" src="/AppMobile/img/door_fanart.jpg">
+            <h1 class="text-center text-bleu-enedis">Enregistrement</h1>
+            <p>Renseigner ce formulaire pour créer un compte.</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="registerform" class="visible" action="" method="post">
+            <p class="submit text-center">
                         <div class="input-group-prepend form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                        <span class="input-group-text" id="basic-addon1">Username:</span>
-                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                        <span class="input-group-text" id="basic-addon1">Identifiant:</span>
+                            <input type="text" maxlength="50" name="username" class="form-control" value="<?php echo $username; ?>">
                             <span class="help-block"><?php echo $username_err; ?></span>
                         </div>
                         <div class="input-group-prepend form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                        <span class="input-group-text" id="basic-addon1">Password:</span>
+                        <span class="input-group-text" id="basic-addon1">Mot de passe:</span>
                             <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
                             <span class="help-block"><?php echo $password_err; ?></span>
                         </div>
                         <div class="input-group-prepend form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                        <span class="input-group-text" id="basic-addon1">Confirm Password:</span>
+                        <span class="input-group-text" id="basic-addon1">Confirmer Mot de passe:</span>
                             <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                             <span class="help-block"><?php echo $confirm_password_err; ?></span>
                         </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend form-group">
-                            <input type="submit" class="btn btn-primary" value="Submit">
-                            <input type="reset" class="btn btn-default" value="Reset">
+                        <div class="input-group-prepend form-group <?php echo (!empty($mobile_err)) ? 'has-error' : ''; ?>">
+                        <span class="input-group-text" id="basic-addon1">Numéro de mobile:</span>
+                            <input type="text" name="num_mobile" class="form-control" value="<?php echo $mobile; ?>">
+                            <span class="help-block"><?php echo $mobile_err; ?></span>
                         </div>
-                    </div>
+                        <div class="input-group-prepend form-group <?php echo (!empty($mail_err)) ? 'has-error' : ''; ?>">
+                        <span class="input-group-text" id="basic-addon1">Email:</span>
+                            <input type="email" name="email" class="form-control" value="<?php echo $mail; ?>">
+                            <span class="help-block"><?php echo $mail_err; ?></span>
+                        </div>
             </p>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
+                <input type="submit" class="btn btn-primary" value="Valider">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-            <p class="submit text-center mt-5"> 
-            <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-block" value="Se connecter" />
-                <small>
-                    <a href="register.php" data-toggle="modal" class="text-success">Vous n'avez pas encore d'autorisation ? Demander une autorisation</a>
-                </small>
-            </p>
+            <p>Déjà un compte ?<a id="login_ref" href="login.php"> Se connecter ici</a></p>
             </form>
 </body>
 <footer>

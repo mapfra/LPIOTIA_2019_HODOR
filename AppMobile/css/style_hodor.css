@@ -4,8 +4,17 @@
   General Layout Style
 ------------------------------------------*/
 #logo1 {
-    width: auto;
-    height: 10%;
+    max-width: 60% !important;
+    height: auto;
+}
+
+#logo2 {
+    max-width: 40% !important;
+    height: auto;
+}
+
+#login_ref {
+    color: rgba(0, 94, 184, 1);
 }
 
 /* The switch - the box around the slider */

@@ -11,17 +11,19 @@ function m_log($arMsg)
 	{  
 	//concatenate msg with datetime  
 	foreach($arMsg as $msg)  
-	$stEntry.=$arLogData['event_datetime']." ".$msg."rn";  
+	$stEntry.=$arLogData['event_datetime']." ".$msg."\n";  
 }  
 else  
 {   //concatenate msg with datetime  
 	
-	$stEntry.=$arLogData['event_datetime']." ".$arMsg."rn";  
+	$stEntry.=$arLogData['event_datetime']." ".$arMsg."\n";  
 }  
 //create file with current date name  
-$stCurLogFileName='log_'.date('Ymd').'.txt';  
+//$stCurLogFileName='log_'.date('Ymd').'.txt';
+$stCurLogFileName='log.txt';  
+
 //open the file append mode,dats the log file will create day wise  
-$fHandler=fopen("/AppMobile/logs/log.txt".$stCurLogFileName,'a+');  
+$fHandler=fopen("D:\\wamp64\\www\\AppMobile\\my_log\\".$stCurLogFileName,'a+');  
 //write the info into the file  
 fwrite($fHandler,$stEntry);  
 //close handler  
