@@ -55,30 +55,30 @@ def on_message(client, userdata, message):
     HiddenMessage = "".join(messageList4)
     print (HiddenMessage)
     
-    try:
+    # try:
         
-        db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            passwd="root",
-            database="test"
-            )
+    #     db = mysql.connector.connect(
+    #         host="localhost",
+    #         user="root",
+    #         passwd="root",
+    #         database="test"
+    #         )
 
-        curseur = db.cursor()
-        req = "SELECT acces FROM uids WHERE uid =%s "
-        uid = HiddenMessage
-        curseur.execute(req)
-        retour = curseur.fetchone()
-        acces = bool (retour[0])
-        print (acces)
+    #     curseur = db.cursor()
+    #     req = "SELECT acces FROM uids WHERE uid =%s "
+    #     uid = HiddenMessage
+    #     curseur.execute(req)
+    #     retour = curseur.fetchone()
+    #     acces = bool (retour[0])
+    #     print (acces)
     
-    except mysql.connector.Error as error:
-        print ("Erreur à la connexion à la base de données", error)
-    finally:
-        if (db.is_connected()):
-            curseur.close()
-            db.close()
-            print ("Fin de la connexion à la base de données MySQL")
+    # except mysql.connector.Error as error:
+    #     print ("Erreur à la connexion à la base de données", error)
+    # finally:
+    #     if (db.is_connected()):
+    #         curseur.close()
+    #         db.close()
+    #         print ("Fin de la connexion à la base de données MySQL")
     
 
 #Variables qui concernent le broker MQTT.
