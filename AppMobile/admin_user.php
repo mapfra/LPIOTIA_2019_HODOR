@@ -33,10 +33,10 @@ function FormGet() {
 		$Erreur = True; $ErreurMsg .= "Rôle invalide";           return (false);
 	}
 
-	if (strlen($dt_start_acces) == 0)  {
+	if (strlen($dt_start_access) == 0)  {
 		$Erreur = True; $ErreurMsg .= "Date invalide";           return (false);
 	}
-	if (strlen($dt_end_acces) == 0)  {
+	if (strlen($dt_end_access) == 0)  {
 		$Erreur = True; $ErreurMsg .= "Date invalide";           return (false);
 	}
 
@@ -251,14 +251,14 @@ function Valider(theForm)
 <body class="login_page">
     <div class="login-wrapper">
         <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
-		<a href="/AppMobile/login.php"><img class="rounded mx-auto d-block" id="logo2" src="/AppMobile/img/logo_hodor.JPG"></a>
+		<a href="/AppMobile/login.php"><img class="rounded mx-auto d-block img-fluid" id="logo2" src="/AppMobile/img/logo_hodor.JPG"></a>
 
 <?php include('pagemessage.php'); ?>
 
 <?php switch($Sortie) {
 	case "Normal" :
 ?>
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="userform" class="visible" action="" method="post">
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="userform" class="visible" method="post">
 			<input name="id" type="hidden" value="<?php echo $id?>">
 			<input name="Action" type="hidden" value="<?php echo $Action?>">   
             <p class="submit text-center mt-5">
@@ -317,6 +317,7 @@ function Valider(theForm)
 			<?php if($id !== 0) { ?>
 					<input type="button" class="btn btn-warning" value="Supprimer" OnClick="Supprimer(document.userform)">
 			<?php } ?>
+					<a href="list_users.php" class="btn btn-warning">Administration</a>
 				</div>
 		</form>
 <?php 

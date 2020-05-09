@@ -64,3 +64,40 @@
 [Thu 2020-05-07 05:45:50 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
 [Thu 2020-05-07 05:49:34 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
 [Thu 2020-05-07 05:49:48 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Thu 2020-05-07 10:22:52 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Thu 2020-05-07 10:24:29 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Fri 2020-05-08 10:04:31 AM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Fri 2020-05-08 10:04:52 AM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Fri 2020-05-08 10:14:18 AM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Fri 2020-05-08 10:18:43 AM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Fri 2020-05-08 10:19:09 AM] [client ::1] RAphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Fri 2020-05-08 06:22:55 PM] [client ::1] Raphael (Id : 1) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
+[Fri 2020-05-08 06:23:01 PM] [client ::1] Raphael (Id : 1) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
+[Sat 2020-05-09 01:15:36 PM] [client ::1] Raphael (Id : 1) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
+[Sat 2020-05-09 01:15:47 PM] [client ::1] Raphael (Id : 1) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
+[Sat 2020-05-09 01:18:18 PM] [client ::1] Michel (Id : 2) vient de s'authentifier dans l'application, STATUS OK
+[Sat 2020-05-09 01:20:23 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:20:51 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:21:11 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:21:32 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:21:54 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:21:59 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:22:04 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:23:19 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:24:34 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:25:32 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:25:39 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:26:11 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:26:32 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:27:20 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:27:30 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:27:40 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier hors de sa plage horaire , STATUS KO
+[Sat 2020-05-09 01:27:54 PM] [client ::1] Michel (Id : 2) a tenté de s'authentifier avec un mot de passe faux dans l'application, STATUS KO
+[Sat 2020-05-09 01:30:34 PM] [client ::1] Raphael (Id : 1) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
+[Sat 2020-05-09 01:30:38 PM] [client ::1] Raphael (Id : 1) a tenté de s'authentifier mais sa date de validité est expirée , STATUS KO
+[Sat 2020-05-09 01:31:00 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Sat 2020-05-09 01:55:50 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Sat 2020-05-09 02:19:59 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Sat 2020-05-09 03:45:38 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Sat 2020-05-09 04:52:16 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK
+[Sat 2020-05-09 05:03:16 PM] [client ::1] Raphael (Id : 1) vient de s'authentifier dans l'application, STATUS OK

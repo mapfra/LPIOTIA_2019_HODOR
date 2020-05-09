@@ -65,3 +65,28 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `cartes_valide`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cartes_valide` ;
+
+CREATE TABLE IF NOT EXISTS `cartes_valide` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  INDEX `cartes_idx` (`id` ASC),
+  `key_uid` VARCHAR(150) NOT NULL
+ )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `uids`
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `uids` ;
+
+CREATE TABLE `uids` (
+    `uid` VARCHAR(8) NOT NULL,
+    `status` TINYINT(1) NOT NULL DEFAULT 0,
+    PRIMARY KEY (`uid`)
+);
