@@ -26,8 +26,8 @@ include "my_log.php";
 <!-- BEGIN BODY -->
 <body class="login_page">
     <div class="login-wrapper">
-        <div id="login" class="login loginpage offset-xl-2 col-xl-8 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
-        <a href="/AppMobile/logout.php"><img class="rounded mx-auto d-block" src="/AppMobile/img/logo_hodor.JPG"></a>
+        <div id="login" class="login loginpage offset-xl-1 col-xl-10 col-lg-12 col-xs-12">
+        <a href="/AppMobile/logout.php"><img class="rounded mx-auto d-block img-fluid" src="/AppMobile/img/logo_hodor.JPG"></a>
 		<div class="col-lg-12 col-md-12 col-12 mt-5">
         <div class="table-responsive">
             <table id="tableDelaiUrba" class="table table-bordered table-striped table-hover text-center">
@@ -73,6 +73,7 @@ include "my_log.php";
 			</table>
 			<div class="form-group">
 			<a href="admin_user.php" class="btn btn-warning">Créer un utilisateur</a>
+			<a href="control_panel.php" class="btn btn-primary">Panneau de controle</a>
             </div>
         </div>
     </div>

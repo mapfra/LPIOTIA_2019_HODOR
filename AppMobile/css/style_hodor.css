@@ -9,8 +9,12 @@
 }
 
 #logo2 {
-    max-width: 40% !important;
+    max-width: 50% !important;
     height: auto;
+}
+#door {
+    height: 26px;
+    width: 26px;
 }
 
 #login_ref {
@@ -430,7 +434,7 @@ div.comment-box {
 }
 
 .help-block {
-    color: #e5e8eb;
+    color: red !important;
 }
 
 .select2-container{
