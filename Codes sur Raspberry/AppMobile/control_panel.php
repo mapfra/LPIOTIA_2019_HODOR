@@ -68,7 +68,6 @@ switch($Action) {
 
 	case "openDoor":
         if (publish_message('openDoor', TOPIC, BROKER, PORT, KEEPALIVE) === true) {
-        //if (true ) {
             $Info		= true;
             $InfoMsg	= "Ouverture de la porte effectuée";
             $statusDoor = 1;
@@ -81,7 +80,6 @@ switch($Action) {
 
 	case "closeDoor":
         if (publish_message('closeDoor', TOPIC, BROKER, PORT, KEEPALIVE) === true) {
-        //if (true ) {
             $Info		= true;
             $InfoMsg	= "Fermeture de la porte effectuée";
             $statusDoor = 0;
