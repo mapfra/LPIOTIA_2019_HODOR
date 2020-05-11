@@ -1,0 +1,803 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:regular,bold');
+
+/*----------------------------------------
+  General Layout Style
+------------------------------------------*/
+#logo1 {
+    max-width: 60% !important;
+    height: auto;
+}
+
+#logo2 {
+    max-width: 50% !important;
+    height: auto;
+}
+#door {
+    height: 26px;
+    width: 26px;
+}
+
+#login_ref {
+    color: rgba(0, 94, 184, 1);
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
+body {
+    background-color: #fff;
+    color: rgba(67, 60, 53, 1.0);
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+div.flex-container div.center {
+    margin-bottom: auto!important;
+    margin-top: auto!important;
+}
+
+/*----------------------------------------
+    Page Title and Breadcrumb
+------------------------------------------*/
+
+.page-title h1 {
+    font-size: 36px;
+    font-family: Ubuntu, sans-serif;
+    color: rgba(0, 94, 184, 1.0);
+}
+
+.breadcrumb, .breadcrumb a {
+    color: #005eb8;
+    font-size: 20px;
+    font-family: Ubuntu, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    line-height: 60px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    font-size: 20px;
+    color: #005eb8;
+}
+
+.breadcrumb-item.active {
+    color: #005eb8;
+    font-weight: bold;
+}
+
+
+/*---------------------------------
+    Typography
+-----------------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+    /*  font-family: Ubuntu, Helvetica, Arial, sans-serif;*/
+
+    font-family: 'Ubuntu', sans-serif;
+    color: #433c35;
+
+}
+
+a, .text-bleu-enedis {
+    color: rgba(0, 94, 184, 1);
+}
+
+a:hover, a:focus {
+    color: #93c90e;
+}
+
+.text-dark {
+    color: #433c35;
+}
+
+.text-warning {
+    color: #eaaa00 !important;
+}
+
+.text-danger {
+    color: rgba(230, 59, 17, 1.0) !important;
+}
+.text-success {
+    color: rgba(147, 201, 14, 1.0) !important;
+}
+
+.bg-primary {
+    background: rgba(0, 94, 184, 1) !important;
+}
+.bg-info {
+    background: rgba(0, 94, 184, 1.0);
+}
+.bg-warning {
+    background: #eaaa00;
+}
+.bg-danger {
+    background: rgba(230, 59, 17, 1.0);
+}
+.bg-success {
+    background: rgba(147, 201, 14, 1.0);
+}
+
+/*-------------------------------
+  Page Loading Progress Bar (PACE)
+-----------------------------------*/
+
+.pace .pace-progress {
+    background: #005eb8;
+}
+
+.pace .pace-activity {
+    border-top-color: #005eb8;
+    border-left-color: #005eb8;
+}
+
+/*----------------------------------------
+  Topbar
+------------------------------------------*/
+
+.page-topbar .quick-area .info-menu li a.sidebar_toggle {
+    color: rgba(0, 94, 184, 1.0);
+}
+
+/*----------------------------------------
+  Sidebar Main Menu
+------------------------------------------*/
+
+.page-sidebar, .page-sidebar.collapseit .wraplist {
+    background-color: rgba(229, 232, 235, 1.0);
+}
+
+#main-menu-wrapper ul {
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+}
+
+#main-menu-wrapper li a {
+    color: rgba(0, 94, 184, 1.0);
+    text-transform: none;
+}
+
+#main-menu-wrapper li.open .sub-menu a.active, #main-menu-wrapper li.open .sub-menu a:hover, #main-menu-wrapper li .sub-menu a:hover {
+    background-color: #cbd1d6;
+    border-left: 3px solid rgba(147, 201, 14, 1);
+}
+
+.page-sidebar.chat_shift .wraplist li:hover .title, .page-sidebar.collapseit .wraplist li:hover .title {
+    background: #93c90e;
+}
+
+.page-sidebar.collapseit .wraplist li:hover {
+    background: #93c90e;
+}
+
+.page-sidebar.collapseit #main-menu-wrapper .wraplist li:hover a i{
+    background: #93c90e;
+}
+
+.page-sidebar.collapseit #main-menu-wrapper .wraplist .sub-menu li a .title{
+    color: rgba(0, 94, 184, 1.0);
+}
+
+.page-sidebar.collapseit #main-menu-wrapper .wraplist .sub-menu li a:hover {
+    background-color: #cbd1d6;
+    border-left: 3px solid #93c90e;
+    color: rgba(0, 94, 184, 1.0);
+}
+
+.page-sidebar.chat_shift #main-menu-wrapper .wraplist li:hover a, .page-sidebar.collapseit #main-menu-wrapper .wraplist li:hover a {
+    background: rgba(229, 232, 235, 1.0);
+    color: #005eb8;
+}
+
+.page-sidebar.collapseit #main-menu-wrapper .wraplist li .sub-menu{
+    background-color: rgba(229, 232, 235, 1.0);
+}
+
+.page-sidebar.collapseit #main-menu-wrapper .wraplist li.open .sub-menu a:hover, .page-sidebar.collapseit #main-menu-wrapper .wraplist li .sub-menu a:hover {
+    background-color: #cbd1d6;
+    border-left: 3px solid #93c90e;
+    color: rgba(0, 94, 184, 1.0);
+}
+
+#main-menu-wrapper li a:hover, #main-menu-wrapper li.open a {
+    background-color: rgba(0, 94, 184, 1);
+}
+
+#main-menu-wrapper li a:hover .arrow:before, #main-menu-wrapper li.open a .arrow:before {
+    color: rgba(255, 255, 255, 0.9);
+}
+#main-menu-wrapper li .sub-menu a:hover .arrow:before, #main-menu-wrapper li.open .sub-menu a .arrow:before {
+    color: rgba(0, 94, 184, 0.65);
+}
+#main-menu-wrapper li.open .sub-menu a {
+    color: rgba(0, 94, 184, 1.0);
+}
+
+#main-menu-wrapper li a .arrow:before {
+    color: rgba(0, 94, 184, 0.65);
+}
+
+/*----------------------------------------
+  Sidebar User Profile
+------------------------------------------*/
+
+.profile-info .profile-details h3 a {
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    color: rgba(234, 238, 243, 1.0);
+    font-size: 19px;
+    line-height: 23px;
+    text-decoration: none;
+}
+
+.profile-info .profile-details .profile-title {
+    color: rgba(229, 232, 235, 1.0);
+}
+
+.profile-status.available, .uprofile-status.available {
+    background-color: rgba(147, 201, 14, 1.0);
+}
+.profile-status.busy, .uprofile-status.busy {
+    background-color: rgba(230, 59, 17, 1.0);
+}
+
+/*----------------------------------------
+  Sidebar Fixed Bottom Graphs
+------------------------------------------*/
+
+.page-sidebar .project-info {
+    background-color: rgba(229, 232, 235, 1.0);
+}
+
+#legende_home{
+    font-size: 0.7em;
+}
+
+/*---------------------------------
+  Section or Content Box
+----------------------------------*/
+
+section header {
+    background-color: #005eb8;
+    border: 1px solid #005eb8;
+    border-bottom: 2px solid rgba(147, 201, 14, 1.0);
+    border-radius:10px 10px 0px 0px;
+    text-align: center;
+}
+
+section header .title,
+section header .title1 {
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+}
+section header .title1,
+.title2 {
+    font-style:italic;
+}
+
+/* START - Couleur background home page en fonction du domaine */
+section header.panel_header.text-center.title_client{
+    background-color: rgb(72, 162, 64);
+}
+section header.panel_header.text-center.title_finance,
+#capex_link{
+    background-color: rgb(228, 0, 77);
+}
+section header.panel_header.text-center.title_secu{
+    background-color: #00a3e0;
+}
+section header.panel_header.text-center.title_patrimoine{
+    background-color: #974878;
+}
+section header.panel_header.text-center.title_pilotage_perf,
+#synthese_perf_link{
+    background-color: #95c90f;
+}
+/* END - Couleur background home page en fonction du domaine */
+
+section .content-body {
+    background-color: #f9f9f9;
+    border: 1px solid #93c90e;
+    border-radius: 0px 0px 10px 10px;
+}
+
+section.box .actions i {
+    color: #ffffff;
+}
+
+section.box .actions i:hover {
+    color: #688197;
+}
+
+div.flex-container section{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+div.flex-container section .content-body{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto!important;
+    margin-top: auto!important;
+}
+
+div.flex-container section .content-body div.row{
+    margin-bottom: auto!important;
+    margin-top: auto!important;
+}
+
+section.danger header {
+    background-color: #e63b11;
+    border: 1px solid #e63b11;
+    border-bottom: 2px solid rgba(0, 94, 184, 1.0);
+}
+
+/*---------------------------------
+  Section or Content Box  Comments
+----------------------------------*/
+
+section.secondary header {
+    width: 100%;
+    display: inline-block;
+    background-color: #98a4ae;
+    border: 1px solid #98a4ae;
+    border-bottom: 2px solid rgba(147, 201, 14, 1.0);
+    vertical-align: top;
+    position: relative;
+}
+
+div.comment-box {
+    max-height: 35vh;
+    overflow-y: auto;
+}
+
+/*------------------------------
+    FORM ELEMENTS
+-------------------------------*/
+.form-control:focus, .has-focus .form-control {
+    border-color: rgba(0, 94, 184, 1.0);
+}
+
+.form-label {
+    color: #e5e8eb;
+}
+
+.form-group .desc {
+    color: #e5e8eb;
+}
+
+.help-block {
+    color: red !important;
+}
+
+.select2-container{
+    background-color: #fff;
+}
+
+.select2-results .select2-highlighted {
+    background: #005eb8;
+}
+
+.select2-drop-active {
+    border: 1px solid #005eb8;
+}
+
+.select2-container-multi.select2-container-active .select2-choices {
+    border: 1px solid #005eb8;
+}
+
+.select2-drop-mask{
+    z-index: 11048;
+}
+
+.select2-drop-multi  {
+    z-index: 11050;
+}
+
+/*----------- input group ----------*/
+/* .input-group .input-group-append,
+.input-group .input-group-prepend,  */
+.input-group .input-group-btn button {
+    color: #e5e8eb;
+}
+
+.input-group.primary .input-group-addon, .input-group.primary .input-group-btn button {
+    border-color: rgba(0, 94, 184, 1.0);
+    background-color: rgba(0, 94, 184, 1.0);
+}
+
+/*----- fixed colors -----*/
+
+.has-error .form-control, .has-error .form-control:focus {
+    border-color: rgba(230, 59, 17, 1.0);
+}
+
+.has-warning .form-control, .has-warning .form-control:focus {
+    border-color: #e63b11;
+}
+
+.has-success .form-control, .has-success .form-control:focus {
+    border-color: rgba(147, 201, 14, 1.0);
+}
+
+.has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
+    color: rgba(230, 59, 17, 1.0);
+}
+
+.has-success .checkbox, .has-success .checkbox-inline, .has-success .control-label, .has-success .help-block, .has-success .radio, .has-success .radio-inline, .has-success.checkbox label, .has-success.checkbox-inline label, .has-success.radio label, .has-success.radio-inline label {
+    color: rgba(147, 201, 14, 1.0);
+}
+
+/*------------------------------
+    BUTTONS
+-------------------------------*/
+.btn {
+    font-family: Ubuntu, sans-serif;
+}
+
+.btn.btn-border.btn-success {
+    border: 2px solid rgba(147, 201, 14, 1.0);
+    color: rgba(147, 201, 14, 1.0);
+}
+
+.btn.btn-border.btn-warning {
+    border: 2px solid #e63b11;
+    color: #e63b11;
+}
+
+.btn.btn-border.btn-danger {
+    border: 2px solid rgba(230, 59, 17, 1.0);
+    color: rgba(230, 59, 17, 1.0);
+}
+.btn.btn-border.btn-info {
+    border: 2px solid rgba(127, 174, 219, 1.0);
+    color: rgba(127, 174, 219, 1.0);
+}
+
+.btn.btn-border.btn-primary {
+    border: 2px solid rgba(0, 94, 184, 1.0);
+    color: rgba(0, 94, 184, 1.0);
+}
+
+.btn.btn-border.btn-link {
+    color: #005eb8;
+}
+
+a.btn:not([href]):not([tabindex]){
+    color: #e5e8eb;
+}
+
+/*colors*/
+
+.btn.btn-success {
+    background: rgba(147, 201, 14, 1.0);
+}
+
+.btn.btn-warning {
+    background: #e63b11;
+}
+
+.btn.btn-danger {
+    background: rgba(230, 59, 17, 1.0);
+}
+
+.btn.btn-info {
+    background: rgba(127, 174, 219, 1.0);
+}
+
+.btn.btn-orange {
+    background: rgba(0, 94, 184, 1.0);
+}
+
+.btn.btn-primary {
+    background: rgba(0, 94, 184, 1.0);
+}
+
+.btn, .btn.btn-default {
+    background: #005eb8;
+    color: #e5e8eb;
+    border-radius: 5px 0px 5px 5px;
+    border: 2px solid #005eb8;
+}
+
+.btn.btn-link {
+    color: #005eb8;
+}
+
+.btn.btn-link:hover, .btn.btn-link:focus {
+    color: rgba(127,174,219, 1.0);
+}
+
+.btn-success:hover, .btn-success:active, .btn-success:focus {
+    background: rgba(201,228,132,1.0);
+}
+
+.btn-warning:hover, .btn-warning:active, .btn-warning:focus {
+    background: #f29d88;
+}
+
+.btn-danger:hover, .btn-danger:active, .btn-danger:focus {
+    background: rgba(230,59,17,1.0);
+}
+.btn-info:hover, .btn-info:active, .btn-info:focus {
+    background: rgba(191,215,237,1.0);
+}
+.btn-orange:hover, .btn-orange:active, .btn-orange:focus {
+    background: rgba(255, 255, 255, 1.0);
+    border:2px solid #005eb8;
+    color: #005eb8;
+}
+
+.btn-primary.active, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background: rgba(255,255,255, 1.0);
+    color: #005eb8;
+    border: 2px solid #005eb8;
+}
+
+.show>.btn-primary.dropdown-toggle {
+    background-color: rgba(147, 201, 14, 1.0);
+}
+
+/*---------------------------------
+  Button History
+----------------------------------*/
+
+i.fa-history{
+    font-size: 30px;
+}
+
+.btn .fa-history{
+    height:20px;
+    width:80px;
+}
+
+/*---------------------------------
+  Button Comments
+----------------------------------*/
+
+i.fa-comments{
+    font-size: 30px;
+}
+
+.btn .fa-comments{
+    height:20px;
+    width:80px;
+}
+
+/*---------------------------------------------
+    Tables
+----------------------------------------------*/
+
+.table>thead>tr>td.primary, .table>tbody>tr>td.primary, .table>tfoot>tr>td.primary, .table>thead>tr>th.primary, .table>tbody>tr>th.primary, .table>tfoot>tr>th.primary, .table>thead>tr.primary>td, .table>tbody>tr.primary>td, .table>tfoot>tr.primary>td, .table>thead>tr.primary>th, .table>tbody>tr.primary>th, .table>tfoot>tr.primary>th {
+    background-color: rgba(0, 94, 184, 0.2);
+}
+
+.table-style1{ 
+    background-color: rgba(0, 94, 184, 0.2);
+    text-align: center;
+}
+
+.table1{ 
+    width: 10vw;
+    height: 5vh;
+    text-align: center;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #DCDCDC;
+}
+
+/*---------------------------------------------
+    Comment history tables content
+----------------------------------------------*/
+
+.history-table>tbody>tr>td>div{
+    height:30vh;
+    overflow-y:auto;
+}
+
+/*---------------------------------
+  Panel background and font color
+----------------------------------*/
+
+.panel{
+    background-color: #005eb8;
+    background-clip: content-box;
+    padding: 0;
+    border-radius: 15px 0px 15px 15px;
+    overflow: auto;
+    height: 100%;
+}
+
+.panel p{
+    color:#fff;
+}
+
+.panel h5{
+    color:#fff;
+}
+
+/*---------------------------------
+  Datepicker
+----------------------------------*/
+
+.datepicker td span.disabled {
+    text-decoration: line-through;
+}
+
+/*-----------------------------------------------------------
+    Datatables
+----------------------------------------------------------*/
+
+.dataTables_wrapper .row {
+    display: flex;
+}
+
+.page-item.active .page-link {
+    background: #93c90e;
+    border-color: #93c90e;
+}
+
+/*-----------------------------------------------------------
+    Logo
+----------------------------------------------------------*/
+
+.page-topbar .logo-area {
+    background-image: url('../images/enedis_logo_small.png');
+    background-color: #ffffff;
+    background-position: center;
+}
+
+.page-topbar.sidebar_shift .logo-area {
+    background-size: 100%;
+}
+
+/*-----------------------------------------------------------
+    Loading spinner
+----------------------------------------------------------*/
+.loading-spinner-container{
+    position: absolute;
+    z-index: 999;
+    overflow: visible;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:rgba(255,255,255,0.5);
+}
+
+.loading-spinner {
+    border: 0.5em solid #005eb8;
+    border-top: 0.5em solid #93c90e;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*----------------------------------------------------------------
+    Login and Registration Page - Transparent Background Style
+------------------------------------------------------------------*/
+
+.loginpage h1 a {
+    background-image: url("../images/enedis_logo.png");
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    min-height: 109px;
+}
+
+.loginpage form .input, .loginpage form input[type=checkbox], .loginpage input[type=text] {
+    color: rgba(0, 94, 184, 1)
+}
+
+.loginpage #nav a, .loginpage a {
+    color: #fff;
+}
+
+.loginpage, .loginpage form label, .loginpage form, .loginpage .message {
+    color: rgba(0, 94, 184, 1);
+}
+
+.loginpage form .input, .loginpage form input[type=checkbox], .loginpage input[type=text] {
+    background-color: rgba(229, 232, 235, 0.6);
+}
+
+.loginpage form .input:hover, .loginpage form input[type=checkbox]:hover, .loginpage input[type=text]:hover, .loginpage form .input:focus, .loginpage form input[type=checkbox]:focus, .loginpage input[type=text]:focus {
+    background-color: rgba(229, 232, 235, 0.8);
+}
+
+.loginpage #login_error, .loginpage .message {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.loginpage .message, .loginpage .message a, .loginpage #login_error, .loginpage #login_error a {
+    color: rgba(0, 94, 184, 1);
+}
+
+body.login_page {
+    background-color: rgba(252, 252, 252, 1.0);
+    background-image: none;
+}
+
+.modal-dialog.modal-xl {
+    max-width: 1200px;
+}
+
+.html2canvas-container { 
+/*     width: 2200px !important; 
+ */    height: auto !important; 
+}
